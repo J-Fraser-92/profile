@@ -1,3 +1,40 @@
+function addSkillsGlance(element, skillsGlance) {
+    for (skill in skillsGlance) {
+        element.append(`
+            <div class="col-md-4">
+                <h3>%name%</h3>
+                <ul class="skills-glance-list"></ul>
+            </div>
+            `.replace("%name%", skillsGlance[skill].name)
+        );
+
+        for (value in skillsGlance[skill].values) {
+            $(".skills-glance-list:last").append("<li>%value%</li>".replace("%value%", skillsGlance[skill].values[value]))
+        }
+    }
+}
+
+function addEmployment(element, employment) {
+    for (job in employment) {
+        element.append(`
+            <div class="employment-content col-md-6" data-toggle="modal" data-target="#%id%">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="%image%">
+                    </div>
+                    <div class="col-md-8">
+                        <h3>%company%</h3>
+                        <h4>%role%</h4>
+                    </div>
+                </div>
+            </div>
+        `.replace("%id%", employment[job].company.replace(" ", "-").toLowerCase())
+        .replace("%company%", employment[job].company)
+        .replace("%role%", employment[job].role)
+        .replace("%image%", employment[job].image));
+    }
+}
+
 function addEmploymentModals(element, employment) {
     for (job in employment) {
         element.append(`
@@ -28,10 +65,10 @@ function addEmploymentModals(element, employment) {
 
 function addEducation(element, education) {
     element.append(`
-        <div class="col-md-1">
+        <div class="col-md-2">
           <img class="img-responsive" src="http://placehold.it/350x250">
         </div>
-        <div class="col-md-11">
+        <div class="col-md-10">
           <h3>University of Strathclyde</h3>
           <h4>Computer & Electronic Systems - MEng with Distinction</h4>
           <div class="row">
